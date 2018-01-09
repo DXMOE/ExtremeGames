@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 
-	<title>Welcome to CodeIgniter</title>
+	<title>Bienvenido a Extregamer</title>
 
 	<style type="text/css">
 
@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	}
 	</style>
 </head>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/css/login.css"
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/css/barra_carga.css"
 <body>
 
 	<div class="container" id="container">
@@ -75,13 +75,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 </div>
 <script type = 'text/javascript' src = "<?php echo base_url();
-   ?>js/js/cerrar.js"></script>
+   ?>js/js/carga_cerrar.js"></script>
 
 
 <?php include('css/css/menu.html'); ?>
-<?php include('css/lateral.html'); ?>
+<?php include('css/css/slider.html'); ?>
 
+<center><div style="padding:12px;background-color:lime;line-height:1.4;">
+ <font color=white><h1>Zona Extreme Gamer</h1></font>	
+<h2>Horario: 10:00AM - 10:00PM</h2>
+<h2>Contacto: 982-102-63-45</h2>
+<h2>Descripción: Sala de videojuegos xbox 360, xbox one y multijuegos donde puedes disfrutar de tus juegos preferidos, ven y diviertete!!!!</h2>
 
-
+</div>
+</center>
 </body>
 </html>

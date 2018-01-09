@@ -72,7 +72,7 @@
                                         <td><?=$membresia->nu_extra; ?></td>
                                       
                                         <td>
-                                           <a href="<?=base_url()?>membresia/edit_eg_membresia/<?=$membresia->id; ?>" class="btn btn-success btn-xs">Restar puntos</a>  
+                                           <a href="<?=bese_url()?>membresia/edit_noticia/<?=$membresia->id; ?>" class="btn btn-success btn-xs">Restar puntos</a>  
                                         </td>
                                         <?php endforeach; ?>
                                     </tr>

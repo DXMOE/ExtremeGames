@@ -6,7 +6,7 @@ body {
   width:100vw;
   height:100vh;
   background-image: linear-gradient(rgba(100,100,100,0.99),rgba(0,0,0,0.95)),
-  url('../css/css/img/back.jpg');
+  url('../css/css/img/marvel.png');
 }
 #torch {
   position:absolute;

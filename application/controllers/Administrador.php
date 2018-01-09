@@ -20,6 +20,14 @@ class  Administrador extends CI_Controller{
     $this->load->view('administrador.php', $output);
   }
 
+
+public function notificacion()
+  {
+    $this->load->helper('url');
+    $this->load->view('promociones');
+
+  }
+
   public function eg_consolas()
   {
     if($this->session->userdata('nu_rol') == FALSE || $this->session->userdata('nu_rol') != '1')
@@ -59,6 +67,11 @@ class  Administrador extends CI_Controller{
 			$crud->set_table('eg_catalago');
 			$crud->set_relation('nu_consola','eg_consolas','nombre');
 			$crud->display_as('nu_consola','Consolas');
+      $crud->display_as('sub_imagen1','Imagen 1');
+      $crud->display_as('sub_imagen2','Imagen 2');
+      $crud->display_as('sub_imagen3','Imagen 3');
+      $crud->display_as('sub_imagen4','Imagen 4');
+
 			$crud->set_subject('Videojuego');
       $crud->set_language("spanish");
 
@@ -66,6 +79,47 @@ class  Administrador extends CI_Controller{
 			$crud->required_fields('nombre');
 
 			$crud->set_field_upload('imagen','assets/uploads/images_catalago');
+      $crud->set_field_upload('sub_imagen1','assets/uploads/images_catalago');
+      $crud->set_field_upload('sub_imagen2','assets/uploads/images_catalago');
+      $crud->set_field_upload('sub_imagen3','assets/uploads/images_catalago');
+      $crud->set_field_upload('sub_imagen4','assets/uploads/images_catalago');
+
+$crud->callback_after_upload(array($this,'resize_callback_after_upload'));
+			$output = $crud->render();
+
+			$this->cargar_vistas($output);
+
+		}catch(Exception $e){
+			show_error($e->getMessage().' --- '.$e->getTraceAsString());
+		}
+  }
+
+  function resize_callback_after_upload($uploader_response, $field_info, $files_to_upload) {
+  $this->load->library('image_moo');   
+  $file_uploaded = $field_info->upload_path.'/'.$uploader_response[0]->name;  
+  $this->image_moo->load($file_uploaded)->resize(640,480)->save($file_uploaded,true);  
+  return true;
+}
+
+  public function eg_productos()
+  {
+    if($this->session->userdata('nu_rol') == FALSE || $this->session->userdata('nu_rol') != '1')
+    {
+      redirect(base_url().'login');
+    }
+    try{
+      $crud = new grocery_CRUD();
+
+			$crud->set_theme('flexigrid');
+			$crud->set_table('eg_productos');
+			$crud->set_subject('Producto');
+      $crud->set_language("spanish");
+
+
+			$crud->required_fields('nombre');
+
+			$crud->set_field_upload('imagen','assets/uploads/images_productos');
+
 
 			$output = $crud->render();
 
@@ -113,13 +167,12 @@ class  Administrador extends CI_Controller{
 
       $crud->set_theme('flexigrid');
       $crud->set_table('eg_membresia');
-      $crud->set_relation('nu_user','eg_users','{nombre} - {paterno}');
-      $crud->set_relation('nu_saldo','eg_saldos','saldo');
-      $crud->set_relation('nu_puntos','eg_puntos','puntos');
+      $crud->set_relation('nu_user','eg_users','{num_serie} {nombre} {paterno} ');
       $crud->display_as('nu_user','Nombre');
       $crud->display_as('nu_saldo','Saldo');
       $crud->display_as('nu_puntos','Puntos');
-      $crud->display_as('nu_extra','Horas Extra');
+      $crud->display_as('nu_extra','Horas Extra Xbox 360');
+      $crud->display_as('nu_extra2','Horas Extra Xbox ONE');
       $crud->set_subject('Membresia');
       $crud->set_language("spanish");
 
@@ -274,6 +327,7 @@ class  Administrador extends CI_Controller{
 
       }
 
+
   public function eg_users()
   {
     if($this->session->userdata('nu_rol') == FALSE || $this->session->userdata('nu_rol') != '1')
@@ -291,6 +345,9 @@ class  Administrador extends CI_Controller{
       $crud->display_as('nu_rol','Tipo de usuario');
       $crud->change_field_type('contraseña','password');
       $crud->callback_before_insert(array($this,'encrypt_password'));
+      $crud->callback_before_update(array($this,'encrypt_password'));
+
+
 
       $crud->required_fields('nombre');
       $crud->required_fields('paterno');
@@ -298,7 +355,7 @@ class  Administrador extends CI_Controller{
       $crud->required_fields('usuario');
       $crud->required_fields('rol');
 
-      $crud->set_field_upload('imagen','assets/uploads/images_promociones');
+      $crud->set_field_upload('imagen','assets/uploads/images_usuarios');
 
       $output = $crud->render();
 

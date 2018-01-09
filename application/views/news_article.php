@@ -1,3 +1,4 @@
+<?php include('css/css/menu_catalago.html'); ?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -16,17 +17,34 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/css/estilos_delcatalogo.css">
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/css/responsive.css">
+
+
   <body>
-      
+      <br>
        <div	class="col-sm-4">
-      <img    src="<?php echo base_url('/assets/uploads/images_catalago/'); ?><?php print $imagen; ?>" class="img-thumbnail"   style="height:300px; width:200px">
+      <img    src="<?php echo base_url('/assets/uploads/images_catalago/'); ?><?php print $imagen; ?>" class="img-thumbnail"   style="height:600px; width:500px">
        </div>
       <div	class="col-sm-8">
-          <h1> <?php print $nombre; ?> </h1>
-          <h3><?php print $descripcion; ?></h3>
-          
-      </div>
+          <CENTER><h1> <?php print $nombre; ?> </h1></CENTER>
+          <justify><h3><?php print $descripcion; ?></h3></justify>
+           <img    src="<?php echo base_url('/assets/uploads/images_catalago/'); ?><?php print $imagen1; ?>" class="img-thumbnail"   style="height:420px; width:800px">
+           <br>
+           <br>
+            <img    src="<?php echo base_url('/assets/uploads/images_catalago/'); ?><?php print $imagen2; ?>" class="img-thumbnail"   style="height:420px; width:800px">
+           <br>
+            <br>
+             <img    src="<?php echo base_url('/assets/uploads/images_catalago/'); ?><?php print $imagen3; ?>" class="img-thumbnail"   style="height:420px; width:800px">
+
+            <br>
+            <br>
+           <img    src="<?php echo base_url('/assets/uploads/images_catalago/'); ?><?php print $imagen4; ?>" class="img-thumbnail"   style="height:420px; width:800px">
+
+
+     </div>
         </body>
 
 </html>
+
+
