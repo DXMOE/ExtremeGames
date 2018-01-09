@@ -27,7 +27,7 @@ class Login extends CI_Controller
  redirect(base_url().'empleado');
  break;
  case '3':
- redirect(base_url().'suscriptor');
+ redirect(base_url().'cliente');
  break;
  default:
  $data['titulo'] = 'Login con roles de usuario en codeigniter';
@@ -52,13 +52,27 @@ public function new_user()
  $usuario = $this->input->post('usuario');
  $contraseña = sha1($this->input->post('contraseña'));
  $check_user = $this->login_model->login_user($usuario,$contraseña);
+ $querycharge = $this->login_model->login_user($usuario,$contraseña);
+ $querycharge2 = $this->login_model->login_user2($usuario,$contraseña);
  if($check_user == TRUE)
  {
  $data = array(
                  'is_logued_in' => TRUE,
                  'id_usuario' => $check_user->id,
                  'nu_rol' => $check_user->nu_rol,
-                 'usuario' => $check_user->usuario
+                 'usuario' => $check_user->usuario,
+                 'nombre' => $querycharge->nombre,
+                 'paterno' => $querycharge->paterno,
+                 'materno' => $querycharge->materno,
+                 'correo' => $querycharge->correo,
+                 'telefono' => $querycharge->telefono,
+                 'imagen' => $querycharge->imagen,
+                 'nu_saldo' => $querycharge2->nu_saldo,
+                 'nu_puntos' => $querycharge2->nu_puntos,
+                 'nu_extra' => $querycharge2->nu_extra,
+                 'nu_extra2' => $querycharge2->nu_extra2,
+
+
              );
  $this->session->set_userdata($data);
  $this->index();
